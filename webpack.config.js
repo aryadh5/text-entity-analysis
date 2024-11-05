@@ -1,19 +1,19 @@
-const webpack = require('webpack');
-const path = require('path');
-require('dotenv').config();
+const webpack = require("webpack");
+const path = require("path");
+require("dotenv").config();
 
 const config = {
-  entry: './src/index.js',
+  entry: "./src/index.js",
   output: {
-    path: path.resolve(__dirname, 'dist'),
-    filename: 'bundle.js'
+    path: path.resolve(__dirname, "dist"),
+    filename: "bundle.js",
   },
   devServer: {
     contentBase: path.resolve(__dirname, "dist"),
     watchContentBase: true,
     compress: true,
-    hot:true,
-    port: 3000
+    hot: true,
+    port: 3001,
   },
   module: {
     rules: [
@@ -21,33 +21,27 @@ const config = {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         use: {
-          loader: 'babel-loader',
+          loader: "babel-loader",
           options: {
-            presets: ['@babel/preset-env', '@babel/preset-react'],
-            plugins: ["@babel/plugin-transform-runtime"]
-          }
-        }
+            presets: ["@babel/preset-env", "@babel/preset-react"],
+            plugins: ["@babel/plugin-transform-runtime"],
+          },
+        },
       },
       {
         test: /\.css$/,
-        use: [
-          'style-loader',
-          'css-loader'
-        ]
-      }
-    ]
+        use: ["style-loader", "css-loader"],
+      },
+    ],
   },
   plugins: [
     new webpack.DefinePlugin({
-      "API_PATH": JSON.stringify(process.env.API_PATH)
-  }),
+      API_PATH: JSON.stringify(process.env.API_PATH),
+    }),
   ],
   resolve: {
-    extensions: [
-      '.js',
-      '.jsx'
-    ]
-  }
+    extensions: [".js", ".jsx"],
+  },
 };
 
 module.exports = config;

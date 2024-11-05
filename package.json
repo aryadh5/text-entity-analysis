@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon server/index.js",
-    "build-dev": "webpack-dev-server --hot --mode development"
+    "build-dev": "set NODE_OPTIONS=--openssl-legacy-provider && webpack-dev-server --hot --mode development"
   },
   "keywords": [],
   "author": "",
